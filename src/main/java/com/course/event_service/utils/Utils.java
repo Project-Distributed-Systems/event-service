@@ -17,11 +17,9 @@ public class Utils {
         try {
             payload = objectMapper.writeValueAsString(eventOutboxPayload);
         } catch (JacksonException e) {
-            throw new ApiRequestException(HttpStatus.INTERNAL_SERVER_ERROR, "Error serializing to outbox data.");
+            throw new ApiRequestException(HttpStatus.INTERNAL_SERVER_ERROR, "event-service: Error serializing to outbox data.");
         }
 
         return payload;
     }
-
-    private Utils() {}
 }

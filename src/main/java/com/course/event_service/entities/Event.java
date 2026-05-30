@@ -23,7 +23,7 @@ public class Event {
     private Category category;
     @Enumerated(EnumType.STRING)
     private Modality modality;
-    private String creatorId;
+    private UUID creatorId;
     @Column(name = "created_at")
     private LocalDateTime createdAt;
     private Boolean cancelled;
@@ -31,7 +31,7 @@ public class Event {
     public Event() {}
 
     public Event(String name, String description, LocalDateTime startDateTime, LocalDateTime endDateTime,
-                 String venue, Category category, Modality modality, String creatorId, LocalDateTime createdAt,
+                 String venue, Category category, Modality modality, UUID creatorId, LocalDateTime createdAt,
                  Boolean cancelled) {
         this.name = name;
         this.description = description;
@@ -103,11 +103,11 @@ public class Event {
         this.modality = modality;
     }
 
-    public String getCreatorId() {
+    public UUID getCreatorId() {
         return creatorId;
     }
 
-    public void setCreatorId(String creatorId) {
+    public void setCreatorId(UUID creatorId) {
         this.creatorId = creatorId;
     }
 
@@ -136,7 +136,7 @@ public class Event {
     }
 
     public static Event create(String name, String description, LocalDateTime startDateTime, LocalDateTime endDateTime,
-                               String venue, Category category, Modality modality, String creatorId) {
+                               String venue, Category category, Modality modality, UUID creatorId) {
         return new Event(name, description, startDateTime, endDateTime, venue, category, modality, creatorId,
                 LocalDateTime.now(), Boolean.FALSE);
     }

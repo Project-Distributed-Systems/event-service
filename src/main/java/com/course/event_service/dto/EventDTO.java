@@ -4,6 +4,7 @@ import com.course.event_service.entities.types.Category;
 import com.course.event_service.entities.types.Modality;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public record EventDTO(
         String name,
@@ -13,7 +14,7 @@ public record EventDTO(
         String venue,
         Category category,
         Modality modality,
-        String creatorId,
+        UUID creatorId,
         boolean cancelled
 ) {
 }
