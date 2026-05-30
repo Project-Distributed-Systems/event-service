@@ -5,6 +5,7 @@ import com.course.event_service.entities.enums.Modality;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "events")
@@ -12,12 +13,12 @@ public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
     private String name;
     private String description;
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
-    private String location;
+    private String venue;
     @Enumerated(EnumType.STRING)
     private Category category;
     @Enumerated(EnumType.STRING)
@@ -30,13 +31,13 @@ public class Event {
     public Event() {}
 
     public Event(String name, String description, LocalDateTime startDateTime, LocalDateTime endDateTime,
-                 String location, Category category, Modality modality, String creatorId, LocalDateTime createdAt,
+                 String venue, Category category, Modality modality, String creatorId, LocalDateTime createdAt,
                  Boolean cancelled) {
         this.name = name;
         this.description = description;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
-        this.location = location;
+        this.venue = venue;
         this.category = category;
         this.modality = modality;
         this.creatorId = creatorId;
@@ -44,7 +45,7 @@ public class Event {
         this.cancelled = cancelled;
     }
 
-    public String getId() { return id; }
+    public UUID getId() { return id; }
 
     public String getName() {
         return name;
@@ -78,12 +79,12 @@ public class Event {
         this.endDateTime = endDateTime;
     }
 
-    public String getLocation() {
-        return location;
+    public String getVenue() {
+        return venue;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setVenue(String venue) {
+        this.venue = venue;
     }
 
     public Category getCategory() {
@@ -118,8 +119,8 @@ public class Event {
         return cancelled;
     }
 
-    public void setCancelled(Boolean cancelled) {
-        this.cancelled = cancelled;
+    public void Cancelled() {
+        this.cancelled = true;
     }
 
     @Override
@@ -135,8 +136,8 @@ public class Event {
     }
 
     public static Event create(String name, String description, LocalDateTime startDateTime, LocalDateTime endDateTime,
-                               String location, Category category, Modality modality, String creatorId) {
-        return new Event(name, description, startDateTime, endDateTime, location, category, modality, creatorId,
+                               String venue, Category category, Modality modality, String creatorId) {
+        return new Event(name, description, startDateTime, endDateTime, venue, category, modality, creatorId,
                 LocalDateTime.now(), Boolean.FALSE);
     }
 }
