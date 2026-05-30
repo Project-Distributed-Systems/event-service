@@ -1,6 +1,8 @@
 package com.course.event_service.utils;
 
 import com.course.event_service.entities.types.EventOutboxPayload;
+import com.course.event_service.exceptions.ApiRequestException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import tools.jackson.core.JacksonException;
 import tools.jackson.databind.ObjectMapper;
@@ -15,7 +17,7 @@ public class Utils {
         try {
             payload = objectMapper.writeValueAsString(eventOutboxPayload);
         } catch (JacksonException e) {
-            throw new RuntimeException(e);
+            throw new ApiRequestException(HttpStatus.INTERNAL_SERVER_ERROR, "Error serializing to outbox data.");
         }
 
         return payload;
