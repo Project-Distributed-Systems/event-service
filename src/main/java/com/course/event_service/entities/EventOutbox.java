@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "event_outbox")
-public class EventOutBox {
+public class EventOutbox {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -16,21 +16,21 @@ public class EventOutBox {
     @Column(nullable = false)
     private String topic;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 4096)
     private String payload;
 
     @Column(nullable = false)
     private LocalDateTime timestamp;
 
-    public EventOutBox() {}
+    public EventOutbox() {}
 
-    public EventOutBox(String topic, String payload, LocalDateTime timestamp) {
+    public EventOutbox(String topic, String payload, LocalDateTime timestamp) {
         this.topic = topic;
         this.payload = payload;
         this.timestamp = timestamp;
     }
 
-    public static EventOutBox publish(String topic, String payload) {
-        return new EventOutBox(topic, payload, LocalDateTime.now());
+    public static EventOutbox publish(String topic, String payload) {
+        return new EventOutbox(topic, payload, LocalDateTime.now());
     }
 }

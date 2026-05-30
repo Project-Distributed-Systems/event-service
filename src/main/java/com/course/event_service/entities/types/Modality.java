@@ -1,4 +1,4 @@
-package com.course.event_service.entities.enums;
+package com.course.event_service.entities.types;
 
 public enum Modality {
     INPERSON(1),

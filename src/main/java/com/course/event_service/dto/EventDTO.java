@@ -1,7 +1,7 @@
 package com.course.event_service.dto;
 
-import com.course.event_service.entities.enums.Category;
-import com.course.event_service.entities.enums.Modality;
+import com.course.event_service.entities.types.Category;
+import com.course.event_service.entities.types.Modality;
 
 import java.time.LocalDateTime;
 

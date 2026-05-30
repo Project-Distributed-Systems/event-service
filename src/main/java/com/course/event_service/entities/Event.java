@@ -1,7 +1,7 @@
 package com.course.event_service.entities;
 
-import com.course.event_service.entities.enums.Category;
-import com.course.event_service.entities.enums.Modality;
+import com.course.event_service.entities.types.Category;
+import com.course.event_service.entities.types.Modality;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;

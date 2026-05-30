@@ -1,8 +1,8 @@
 package com.course.event_service.config;
 
 import com.course.event_service.entities.Event;
-import com.course.event_service.entities.enums.Category;
-import com.course.event_service.entities.enums.Modality;
+import com.course.event_service.entities.types.Category;
+import com.course.event_service.entities.types.Modality;
 import com.course.event_service.repositories.EventRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
