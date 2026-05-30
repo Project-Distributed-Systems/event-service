@@ -20,7 +20,8 @@ public class TestConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Event event = new Event(null, "Teste", "Teste", null, null, null, Category.valueOf(3), Modality.valueOf(1), null);
+        Event event = Event.create("Teste", "Teste", null, null, null,
+                Category.valueOf(3), Modality.valueOf(1), null);
         eventRepository.save(event);
     }
 }
