@@ -9,5 +9,6 @@ public interface EventService {
     UUID createEvent(EventDTO eventDTO);
     void updateEvent(UUID eventId, EventDTO eventDTO);
     void deleteEvent(UUID eventId);
+    void setCancelled(UUID eventId);
 }
 

@@ -73,4 +73,13 @@ public class EventServiceTest {
         verify(eventRepository, times(1)).deleteById(any());
         verify(outboxRepository, times(1)).save(any(EventOutbox.class));
     }
+
+    @Test
+    void setEventCancelled() {
+        when(eventRepository.findById(any())).thenReturn(Optional.of(event));
+        eventService.setCancelled(event.getId());
+
+        verify(eventRepository, times(1)).save(eventCaptor.capture());
+        assertThat(eventCaptor.getValue().isCanceled()).isEqualTo(true);
+    }
 }

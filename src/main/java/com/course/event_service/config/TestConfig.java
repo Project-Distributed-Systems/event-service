@@ -20,12 +20,14 @@ public class TestConfig implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         EventDTO eventDTO = new EventDTO("Teste", "Teste", null, null, null,
                 Category.valueOf(3), Modality.valueOf(1), null, false);
-        eventService.createEvent(eventDTO);
-        EventDTO eventDTO2 = new EventDTO("Name", null, null, null, null,
+        UUID eventId = eventService.createEvent(eventDTO);
+        EventDTO eventDTO2 = new EventDTO("Name", "Modified", null, null, null,
                 Category.valueOf(2), Modality.valueOf(2), null, false);
-        eventService.updateEvent(UUID.fromString("800c55d3-f80b-443c-bcf6-e22ac42416ee"), eventDTO2);
+        eventService.updateEvent(eventId, eventDTO2);
+        eventService.deleteEvent(eventId);
+        eventService.setCancelled(UUID.fromString("24f861b4-fd7b-420a-8855-e44f891b5f89"));
     }
 }

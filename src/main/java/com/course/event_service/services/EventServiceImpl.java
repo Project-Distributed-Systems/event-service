@@ -78,4 +78,17 @@ public class EventServiceImpl implements EventService {
         outboxRepository.save(EventOutbox.publish(outboxTopic, outboxPayload));
         log.info("Event ID: {}, Status: DELETED.", eventId);
     }
+
+    @Override
+    public void setCancelled(UUID eventId) {
+        Event event = eventRepository.findById(eventId).orElseThrow(() -> new ApiRequestException(HttpStatus.NOT_FOUND,
+                "Event does not exist."));
+
+        event.setCanceled();
+        log.info("Event ID: {}, Status: CANCELLED.", eventId);
+        EventOutboxPayload eventOutboxPayload = new EventOutboxPayload(eventId, false);
+        String outboxPayload = Utils.writeToString(eventOutboxPayload);
+        outboxRepository.save(EventOutbox.publish(outboxTopic, outboxPayload));
+        eventRepository.save(event);
+    }
 }
