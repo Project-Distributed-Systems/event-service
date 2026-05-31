@@ -16,7 +16,7 @@ public class EventFactory {
     private final static LocalDateTime END_DATE_TIME = LocalDateTime.parse("2026-05-29T23:00:00");
     private final static String VENUE = "São Paulo, SP";
     private final static Category CATEGORY = Category.CONCERT;
-    private final static Modality MODALITY = Modality.INPERSON;
+    private final static Modality MODALITY = Modality.IN_PERSON;
     private final static UUID CREATOR_ID = UUID.randomUUID();
 
     public static Event eventInit() {

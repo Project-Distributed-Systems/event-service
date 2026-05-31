@@ -26,13 +26,13 @@ public class Event {
     private UUID creatorId;
     @Column(name = "created_at")
     private LocalDateTime createdAt;
-    private Boolean cancelled;
+    private Boolean isCanceled;
 
     public Event() {}
 
     public Event(String name, String description, LocalDateTime startDateTime, LocalDateTime endDateTime,
                  String venue, Category category, Modality modality, UUID creatorId, LocalDateTime createdAt,
-                 Boolean cancelled) {
+                 Boolean isCanceled) {
         this.name = name;
         this.description = description;
         this.startDateTime = startDateTime;
@@ -42,7 +42,7 @@ public class Event {
         this.modality = modality;
         this.creatorId = creatorId;
         this.createdAt = createdAt;
-        this.cancelled = cancelled;
+        this.isCanceled = isCanceled;
     }
 
     public UUID getId() { return id; }
@@ -115,12 +115,12 @@ public class Event {
         return createdAt;
     }
 
-    public Boolean isCancelled() {
-        return cancelled;
+    public Boolean isCanceled() {
+        return isCanceled;
     }
 
-    public void Cancelled() {
-        this.cancelled = true;
+    public void setCanceled() {
+        this.isCanceled = true;
     }
 
     @Override

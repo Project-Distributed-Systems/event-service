@@ -15,6 +15,6 @@ public record EventDTO(
         Category category,
         Modality modality,
         UUID creatorId,
-        boolean cancelled
+        boolean isCanceled
 ) {
 }
