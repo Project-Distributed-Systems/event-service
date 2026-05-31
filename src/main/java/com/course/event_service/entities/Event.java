@@ -1,10 +1,11 @@
 package com.course.event_service.entities;
 
-import com.course.event_service.entities.enums.Category;
-import com.course.event_service.entities.enums.Modality;
+import com.course.event_service.entities.types.Category;
+import com.course.event_service.entities.types.Modality;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "events")
@@ -12,70 +13,115 @@ public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
-
+    private UUID id;
     private String name;
     private String description;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
-    private String location;
-
+    private LocalDateTime startDateTime;
+    private LocalDateTime endDateTime;
+    private String venue;
     @Enumerated(EnumType.STRING)
     private Category category;
-
     @Enumerated(EnumType.STRING)
     private Modality modality;
-
-    private String creatorId;
-    private Boolean cancelled;
+    private UUID creatorId;
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+    private Boolean isCanceled;
 
     public Event() {}
 
-    public Event(String id, String name, String description,
-                 LocalDateTime startTime, LocalDateTime endTime,
-                 String location, Category category,
-                 Modality modality, String creatorId) {
-        this.id = id;
+    public Event(String name, String description, LocalDateTime startDateTime, LocalDateTime endDateTime,
+                 String venue, Category category, Modality modality, UUID creatorId, LocalDateTime createdAt,
+                 Boolean isCanceled) {
         this.name = name;
         this.description = description;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.location = location;
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
+        this.venue = venue;
         this.category = category;
         this.modality = modality;
         this.creatorId = creatorId;
-        this.cancelled = false;
+        this.createdAt = createdAt;
+        this.isCanceled = isCanceled;
     }
 
-    public String getId() { return id; }
+    public UUID getId() { return id; }
 
+    public String getName() {
+        return name;
+    }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
+    public String getDescription() {
+        return description;
+    }
 
-    public LocalDateTime getStartTime() { return startTime; }
-    public void setStartTime(LocalDateTime startTime) { this.startTime = startTime; }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-    public LocalDateTime getEndTime() { return endTime; }
-    public void setEndTime(LocalDateTime endTime) { this.endTime = endTime; }
+    public LocalDateTime getStartDateTime() {
+        return startDateTime;
+    }
 
-    public String getLocation() { return location; }
-    public void setLocation(String location) { this.location = location; }
+    public void setStartDateTime(LocalDateTime startDateTime) {
+        this.startDateTime = startDateTime;
+    }
 
-    public Category getCategory() { return category; }
-    public void setCategory(Category category) { this.category = category; }
+    public LocalDateTime getEndDateTime() {
+        return endDateTime;
+    }
 
-    public Modality getModality() { return modality; }
-    public void setModality(Modality modality) { this.modality = modality; }
+    public void setEndDateTime(LocalDateTime endDateTime) {
+        this.endDateTime = endDateTime;
+    }
 
-    public String getCreatorId() { return creatorId; }
-    public void setCreatorId(String creatorId) { this.creatorId = creatorId; }
+    public String getVenue() {
+        return venue;
+    }
 
-    public Boolean getCancelled() { return cancelled; }
-    public void setCancelled(Boolean cancelled) { this.cancelled = cancelled; }
+    public void setVenue(String venue) {
+        this.venue = venue;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Modality getModality() {
+        return modality;
+    }
+
+    public void setModality(Modality modality) {
+        this.modality = modality;
+    }
+
+    public UUID getCreatorId() {
+        return creatorId;
+    }
+
+    public void setCreatorId(UUID creatorId) {
+        this.creatorId = creatorId;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public Boolean isCanceled() {
+        return isCanceled;
+    }
+
+    public void setCanceled() {
+        this.isCanceled = true;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -87,5 +133,11 @@ public class Event {
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
+    }
+
+    public static Event create(String name, String description, LocalDateTime startDateTime, LocalDateTime endDateTime,
+                               String venue, Category category, Modality modality, UUID creatorId) {
+        return new Event(name, description, startDateTime, endDateTime, venue, category, modality, creatorId,
+                LocalDateTime.now(), Boolean.FALSE);
     }
 }

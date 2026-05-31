@@ -1,7 +1,7 @@
-package com.course.event_service.entities.enums;
+package com.course.event_service.entities.types;
 
 public enum Modality {
-    INPERSON(1),
+    IN_PERSON(1),
     ONLINE(2);
 
     private int code;
