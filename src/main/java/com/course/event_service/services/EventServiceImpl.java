@@ -84,6 +84,8 @@ public class EventServiceImpl implements EventService {
         Event event = eventRepository.findById(eventId).orElseThrow(() -> new ApiRequestException(HttpStatus.NOT_FOUND,
                 "Event does not exist."));
 
+        if(event.isCanceled()) throw new ApiRequestException(HttpStatus.BAD_REQUEST, "Event is already cancelled.");
+
         event.setCanceled();
         log.info("Event ID: {}, Status: CANCELLED.", eventId);
         EventOutboxPayload eventOutboxPayload = new EventOutboxPayload(eventId, false);
