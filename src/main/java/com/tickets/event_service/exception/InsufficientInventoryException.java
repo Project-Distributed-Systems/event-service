@@ -1,4 +1,4 @@
-package com.tickets.event_service.exceptions;
+package com.tickets.event_service.exception;
 
 public class InsufficientInventoryException extends RuntimeException {
 
