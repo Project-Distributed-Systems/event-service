@@ -1,6 +1,6 @@
 package com.tickets.event_service.infrastructure.web.exception;
 
-import com.tickets.event_service.exceptions.InsufficientInventoryException;
+import com.tickets.event_service.exception.InsufficientInventoryException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
