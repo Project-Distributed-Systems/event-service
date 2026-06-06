@@ -24,4 +24,8 @@ public class ResponseObject {
     public static ResponseObject of(String message, HttpStatus status, Object data) {
         return new ResponseObject(message, status, data, ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")));
     }
+
+    public String getMessage() {
+        return message;
+    }
 }

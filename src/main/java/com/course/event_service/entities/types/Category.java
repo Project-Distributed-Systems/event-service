@@ -1,10 +1,10 @@
 package com.course.event_service.entities.types;
 
 public enum Category {
-    PARTY(1),
-    CONCERT(2),
-    SPORTS(3),
-    GASTRONOMY(4);
+    PARTY(0),
+    CONCERT(1),
+    SPORTS(2),
+    GASTRONOMY(3);
 
     private int code;
 

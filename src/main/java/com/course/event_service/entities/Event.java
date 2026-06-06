@@ -14,15 +14,22 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private String description;
+    @Column(nullable = false)
     private LocalDateTime startDateTime;
+    @Column(nullable = false)
     private LocalDateTime endDateTime;
     private String venue;
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Category category;
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Modality modality;
+    @Column(nullable = false)
     private UUID creatorId;
     @Column(name = "created_at")
     private LocalDateTime createdAt;
