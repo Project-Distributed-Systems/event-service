@@ -1,4 +1,4 @@
-package com.course.event_service;
+package com.tickets.event_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class EventServiceApplication {
 
-	void main() {
-		SpringApplication.run(EventServiceApplication.class);
+	public static void main(String[] args) {
+		SpringApplication.run(EventServiceApplication.class, args);
 	}
 
 }
